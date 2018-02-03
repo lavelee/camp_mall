@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+    .box{padding: 10px; text-align:center; }
+  </style>
+  <script>
+    let Timer = {
+      current: new Date(0),
+      interval_obj: null,
+
+      startTimer: function(){
+        this.current.setSeconds(this.current.getSeconds() + 1);
+        update();
+      },
+      // bind 써보기
+      
+      resetTimer: function(){
+        this.is_pending = false;
+        this.current = new Date(0);
+        update();
+      },
+    }
+    function update(){
+      let seconds = ("0"+Timer.current.getSeconds()).slice(-2);
+      let minutes = ("0"+Timer.current.getMinutes()).slice(-2);
+      document.querySelector(".target").innerHTML = `${minutes} : ${seconds}`;
+    }
+
+    function init(e){
+      document.querySelector('#a').addEventListener('click',(e)=>{
+        Timer.interval_obj = setInterval(Timer.startTimer.bind(Timer),1000);
+      });
+      document.querySelector('#b').addEventListener('click',(e)=>{
+        clearInterval(Timer.interval_obj);
+        Timer.is_pending=false;
+      });
+      document.querySelector('#c').addEventListener('click',(e)=>{
+        clearInterval(Timer.interval_obj);
+        Timer.resetTimer();
+      });
+    }
+    document.addEventListener("DOMContentLoaded",init);
+  </script>
+</head>
+<body>
+  <div class="box">
+    <h2 class="target">00:00</h2>
+  </div>
+  <div class="box">
+    <button id="a" class="btn btn-info">시작</button>
+    <button id="b" class="btn btn-warning">중지</button>
+    <button id="c" class="btn btn-dark">리셋</button>
+  </div>
+</body>
+</html>

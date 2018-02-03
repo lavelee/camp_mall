@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>Document</title>
+<script>
+  document.addEventListener("DOMContentLoaded",init);
+  function init(e){
+    document.querySelector("#btn_submit").addEventListener('click',(e)=>{
+      e.preventDefault();
+      console.log("clicked!");
+      let els = {
+        submit_btn : document.querySelector("#btn_submit"),
+        data_test1 : document.querySelector("#testform input[name='name_test1']"),
+        data_test2 : document.querySelector("#testform input[name='name_test2']"),
+        data_test3 : document.querySelector("#testform input[name='name_test3']"),
+        data_test4 : document.querySelector("#testform input[name='name_test4']"),
+        data_test5 : document.querySelector("#testform input[name='name_test5']"),
+      };
+      let data = {
+        submit_btn : document.querySelector("#btn_submit").value,
+        data_test1 : document.querySelector("#testform input[name='name_test1']").value,
+        data_test2 : document.querySelector("#testform input[name='name_test2']").value,
+        data_test3 : document.querySelector("#testform input[name='name_test3']").value,
+        data_test4 : document.querySelector("#testform input[name='name_test4']").value,
+        data_test5 : document.querySelector("#testform input[name='name_test5']").value,
+      };
+      console.log(els, data);
+    });
+  }
+</script>
+</head>
+<body>
+  <form id="testform" action="/" method="post">
+    <div>
+      <label for="test1"></label>
+      <input type="text" name="name_test1" id="test1" placeholder="테스트 필드 1">
+    </div>
+    <div>
+      <label for="test2"></label>
+      <input type="text" name="name_test2" id="test2" placeholder="테스트 필드 2">
+    </div>
+    <div>
+      <label for="test3"></label>
+      <input type="text" name="name_test3" id="test3" placeholder="테스트 필드 3">
+    </div>
+    <div>
+      <label for="test4"></label>
+      <input type="text" name="name_test4" id="test4" placeholder="테스트 필드 4">
+    </div>
+    <div>
+      <label for="test5"></label>
+      <input type="text" name="name_test5" id="test5" placeholder="테스트 필드 5">
+    </div>
+    <button id="btn_submit" type="submit">send</button>
+  </form>
+</body>
+</html>
