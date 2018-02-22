@@ -3,15 +3,17 @@ const app = express();
 const routes = require('./routes');
 const path = require('path');
 
-let mongoose = require('mongoose');
-let mongoose_auto_inc = require('mongoose-auto-increment');
-let db = mongoose.connection;
-db.on('error', console.error);
-db.once('open', function(){
-    console.log('mongodb connect');
-});
-let connect = mongoose.createConnection('mongodb://127.0.0.1:27017/blog');
-mongoose_auto_inc.initialize(connect);
+const logger = require('morgan');
+const bodyParser = require('body-parser');
+
+// const mongoose = require('mongoose');
+// mongoose.Promise = global.Promise;
+// mongoose.connection.on('error', console.error);
+// mongoose.createConnection('mongodb://127.0.0.1:27017/blog');
+
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 routes(app);
 const port = 3000;
