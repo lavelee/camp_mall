@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connection.on('error', console.error);
-let db = mongoose.createConnection('mongodb://127.0.0.1:27017/blog');
+mongoose.connect('mongodb://127.0.0.1:27017/blog');
 
 const m_item = require('./model/item');
 
